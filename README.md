@@ -2,7 +2,7 @@
 This project uses a python script to establish a communication between the SST26VF080A flash and the open Source [chameleon SoC](https://github.com/shalan/Chameleon_SoC) in two modes. 
 First in the SPI mode to program the flash and second in the QUAD SPI mode to read the instruction from the flash.
 
-## Flash Writer and UART master integration to the Chameleon SoC:
+## Flash Writer and UART master integration to the Chameleon SoC FROM [here](https://github.com/nabadawy/AMEN2S-SoC):
 To establish a communication between the SoC and to the flash the Chameleon SoC architecture was updated as follow: 
 ![FW_diagram](https://github.com/nabadawy/Chameleon_SoC_with-SST26VF080A-flash-/blob/main/docs/Updated.drawio.png)
 
