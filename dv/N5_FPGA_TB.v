@@ -1,14 +1,17 @@
 `timescale 1ns/1ns
 
 `define CLK_PERIOD 83.3333333
-`define BITIME  208333 
-`define FETCH_FROM_FLASH
+`define BITIME  8000 
+//`define FETCH_FROM_FLASH
 `ifdef ICARUS_VERILOG
     `define   SIM_TIME    500_000_000
     `define   SIM_LEVEL   0
     `define   TEST_FILE   "../mem/test_flash.mem" 
 
-    
+    `include "rtl_fpga/n5_netlists.v"
+    `include "sst26wf080b.v"
+    `include "23LC512.v" 
+    `include "M24LC16B.v"
 `else
     `define   TEST_FILE   "test.mem" 
 `endif
@@ -79,13 +82,13 @@ localparam  WE_OFF = 32'h4C000000,
            
     `ifdef FETCH_FROM_FLASH
         // Program Flash 
-        sst26wf080b flash(
+        sst26wf080b FLASH(
             .SCK(fsclk),
             .SIO(fdio),
             .CEb(fcen)
         );
-         defparam flash.I0.Tsce = 25_000;
-         defparam flash.I0.Tpp = 1_000;
+         defparam FLASH.I0.Tsce = 25_000;
+         defparam FLASH.I0.Tpp = 1_000;
     `endif
 
     /* N5_SoC Core */
@@ -94,7 +97,7 @@ localparam  WE_OFF = 32'h4C000000,
         .VPWR(1'b1),
         .VGND(1'b0),
     `endif
-        .HCLK_HF(HCLK),
+        .HCLK(HCLK),
         .HRESETn(HRESETn),
 
         // .SYSTICKCLKDIV(8'd100),
@@ -187,7 +190,7 @@ localparam  WE_OFF = 32'h4C000000,
         .SCL(scl), 
         .RESET(~HRESETn)
     );
-/*
+
     `ifdef FETCH_FROM_FLASH 
         // Load the application into the flash memory
         initial begin
@@ -198,7 +201,7 @@ localparam  WE_OFF = 32'h4C000000,
         end
     `endif
     
-    */
+    
     // Clock and Rest Generation
     initial begin
         //Inputs initialization
@@ -235,11 +238,11 @@ localparam  WE_OFF = 32'h4C000000,
       parameter Memsize = (Msize * Mega ) + (Ksize * Kilo);                // Size of Memory in bytes
                
      // Test Case
-                   reg[7:0] data;
+                   reg[31:0] data;
                    reg [7:0] D1,D2,D3,D4;
                    //reg[7:0]program[Memsize-1:0];
                    //integer i; 
-                   initial begin
+            /*    initial begin
                    
                        TX = 1;
                        //#80000000;
@@ -247,47 +250,57 @@ localparam  WE_OFF = 32'h4C000000,
                        //$finish;
                        FW_ENABLE;
            
-                       //SPI_OE(4'b0001);
-                       READ_ST_REG(data); //Z0
-                       assign D1 = data | 8'h02;
-                       ENABLE_QE (D1);
-                       #25000
-                       READ_ST_REG(data); //0a
+                       SPI_OE(4'b0001);
+                      // READ_ST_REG(data); //Z0
+                       //assign D1 = data | 8'h02;
+                       //ENABLE_QE (D1);
+                       //#25000
+                      // READ_ST_REG(data); //0a
                        SPI_STATRT;
                        SPI_BYTE_WR(8'hFF);
                        SPI_STOP;
-                       //SPI_STATRT;
-                       //SPI_BYTE_WR(8'h9F);
-                       READ_ST_REG(data); //0a
-                       //SPI_BYTE_RD(data);
+                       SPI_STATRT;
+                       SPI_BYTE_WR(8'h9F);
+                      // READ_ST_REG(data); //0a
+                       SPI_BYTE_RD(data);
                        $display("JEDEC Byte 0:%x", data);
-                       //SPI_BYTE_RD(data);
-                       //$display("JEDEC Byte 1:%x", data);
-                       //SPI_BYTE_RD(data);
-                       //$display("JEDEC Byte 2:%x", data);
+                       SPI_BYTE_RD(data);
+                       $display("JEDEC Byte 1:%x", data);
+                       SPI_BYTE_RD(data);
+                       $display("JEDEC Byte 2:%x", data);
                        SPI_STOP;
                        //ENABLE_QE;
                       
-                       end
-                       /*
+                       end */
+                    /*    initial begin
                         FW_ENABLE;
                         SPI_OE(4'b0001);
                         SPI_STATRT;
                         SPI_BYTE_WR(8'hFF);
                         SPI_STOP;
                         
-                                              
-                               FLASH_WEN;
-                               FLASH_PROT_UNLK;
-                               FLASH_WEN;
-                               #30_000;
-                               FLASH_CHIP_ERASE;
-                               #30_000;
-                               FLASH_WEN;
-                               FLASH_WORD_PROG(24'h0, 32'h0A0B0C0D);
-                               #2_000;
-                               FLASH_WDI;
-                               FLASH_WORD_RD(24'h0, data);
+                            SPI_OE(4'b0001);     
+                            SPI_STATRT;  
+                             SPI_BYTE_WR(8'h05);  
+                             SPI_BYTE_RD(data); 
+                              SPI_STOP;      
+                              
+                              SPI_OE(4'b0001);     
+                              SPI_STATRT;  
+                              SPI_BYTE_WR(8'h35);  
+                              SPI_BYTE_RD(data); 
+                              SPI_STOP;      
+                               //FLASH_WEN;
+                              // FLASH_PROT_UNLK;
+                               //FLASH_WEN;
+                               //#30_000;
+                              // FLASH_CHIP_ERASE;
+                              // #30_000;
+                              // FLASH_WEN;
+                              // FLASH_WORD_PROG(24'h0, 32'h0A0B0C0D);
+                              // #2_000;
+                              // FLASH_WDI;
+                              // FLASH_WORD_RD(24'h0, data);
                                
                                //FLASH_BYTE_RD(24'h0, D2);
                                //FLASH_BYTE_RD(24'h0, D3);
@@ -296,8 +309,8 @@ localparam  WE_OFF = 32'h4C000000,
                                
                        #50000;
                        $finish;
-                   end
-    */
+                   end */
+    
     `ifdef ICARUS_VERILOG
         // Dump file
         initial begin
@@ -326,7 +339,7 @@ UART_MON MON (.RX(TX));
 // Baud rate 1228800
     // Bit time ~ 813.8ns
     // 8N1
-    localparam BITTIME = 208333 ; //baud rate 4800
+    localparam BITTIME = 8000 ; //baud rate 125000
     //localparam BITTIME = 52083.3; //baud rate 19200
     //localparam BITTIME = 813.8; //baud rate 1228800
     //localparam BITTIME = 7812.5 ; //baud rate 128000
@@ -476,7 +489,7 @@ task UART_SEND (input [7:0] data);
                                 SPI_STATRT;
                                 SPI_BYTE_WR(8'h01); // global protection unlock
                                 SPI_BYTE_WR(data);
-                                //SPI_BYTE_WR(data);
+                                SPI_BYTE_WR(data);
                                 SPI_STOP;
                             end
                         endtask
@@ -520,7 +533,7 @@ task UART_SEND (input [7:0] data);
                             begin : task_body
                                 SPI_OE(4'b0001);
                                 SPI_STATRT;
-                                SPI_BYTE_WR(8'h03);
+                                SPI_BYTE_WR(8'h0B);
                                 SPI_BYTE_WR(A[23:16]);
                                 SPI_BYTE_WR(A[15:8]);
                                 SPI_BYTE_WR(A[7:0]);
@@ -532,7 +545,8 @@ task UART_SEND (input [7:0] data);
                             end
                         endtask
     endmodule
-    module terminal #(parameter bit_time = 1333.3333333) (input wire rx);
+
+module terminal #(parameter bit_time = 8000) (input wire rx);
 
     integer i;
     reg [7:0] char;
@@ -555,7 +569,7 @@ endmodule
 
 //module UART_MON #(parameter BITTIME=813.8)(input RX);
 //module UART_MON #(parameter BITTIME=7812.5)(input RX);
-module UART_MON #(parameter BITTIME=208333)(input wire RX);
+module UART_MON #(parameter BITTIME=8000)(input wire RX);
 //module UART_MON #(parameter BITTIME=52083.3)(input RX);
     reg [7:0] data;
     integer i;
