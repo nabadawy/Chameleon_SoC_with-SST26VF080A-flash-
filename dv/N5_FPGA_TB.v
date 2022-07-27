@@ -2,7 +2,7 @@
 
 `define CLK_PERIOD 83.3333333
 `define BITIME  8000 
-//`define FETCH_FROM_FLASH
+`define FETCH_FROM_FLASH
 `ifdef ICARUS_VERILOG
     `define   SIM_TIME    500_000_000
     `define   SIM_LEVEL   0
@@ -193,11 +193,13 @@ localparam  WE_OFF = 32'h4C000000,
 
     `ifdef FETCH_FROM_FLASH 
         // Load the application into the flash memory
+        integer i;
         initial begin
             #1  $readmemh(`TEST_FILE, FLASH.I0.memory);
             $display("---------N5 Flash -----------");
-            $display("Memory[0]: %0d, Memory[1]: %0d, Memory[2]: %0d, Memory[3]: %0d", 
-                FLASH.I0.memory[0], FLASH.I0.memory[1], FLASH.I0.memory[2], FLASH.I0.memory[3]);
+            for ( i=6304 ; i< 6432 ; i=i+1) begin
+            $display("Memory byte [%0d",i,"]:", "0x%0h",FLASH.I0.memory[i]);
+                end 
         end
     `endif
     
@@ -242,7 +244,7 @@ localparam  WE_OFF = 32'h4C000000,
                    reg [7:0] D1,D2,D3,D4;
                    //reg[7:0]program[Memsize-1:0];
                    //integer i; 
-            /*    initial begin
+              /*  initial begin
                    
                        TX = 1;
                        //#80000000;
@@ -272,11 +274,11 @@ localparam  WE_OFF = 32'h4C000000,
                        //ENABLE_QE;
                       
                        end */
-                    /*    initial begin
+                   /*   initial begin
                         FW_ENABLE;
                         SPI_OE(4'b0001);
-                        SPI_STATRT;
-                        SPI_BYTE_WR(8'hFF);
+                       SPI_STATRT;
+                       SPI_BYTE_WR(8'hFF);
                         SPI_STOP;
                         
                             SPI_OE(4'b0001);     
@@ -307,7 +309,7 @@ localparam  WE_OFF = 32'h4C000000,
                                //FLASH_BYTE_RD(24'h0, D4);
                                
                                
-                       #50000;
+                      
                        $finish;
                    end */
     
