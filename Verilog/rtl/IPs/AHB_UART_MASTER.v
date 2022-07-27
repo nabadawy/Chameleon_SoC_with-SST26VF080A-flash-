@@ -873,7 +873,7 @@ module AHB_UART_MASTER(HCLK, HRESETn, HADDR, HTRANS, HSIZE, HWRITE, HWDATA, HREA
     .baudtick(b_tick),
     .clk(HCLK),
     .en(1'h1),
-    .prescale(16'h000C),
+    .prescale(16'h0005), //0c
     .rst_n(HRESETn)
   );
   (* module_not_derived = 32'd1 *)
