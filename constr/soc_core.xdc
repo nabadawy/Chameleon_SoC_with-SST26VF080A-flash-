@@ -4,96 +4,96 @@
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
 ## Timing Constraints
-create_clock -add -name sys_clk_pin -period 1000.0 -waveform {0 500.0} [get_ports {HCLK}] ;
+create_clock -add -name sys_clk_pin -period 83.333 -waveform {0 41.666} [get_ports {HCLK}] ;
 
 # Outputs
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {fsclk_Sys0_S0}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {fsclk_Sys0_S0}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {fsclk_Sys0_S0}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {fcen_Sys0_S0}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {fcen_Sys0_S0}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {fcen_Sys0_S0}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {RsTx_Sys0_SS0_S0}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0 [get_ports {RsTx_Sys0_SS0_S0}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333 [get_ports {RsTx_Sys0_SS0_S0}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {RsTx_Sys0_SS0_S1}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {RsTx_Sys0_SS0_S1}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {RsTx_Sys0_SS0_S1}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {MSO_Sys0_SS0_S3}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {MSO_Sys0_SS0_S3}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {MSO_Sys0_SS0_S3}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {SSn_Sys0_SS0_S3}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {SSn_Sys0_SS0_S3}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {SSn_Sys0_SS0_S3}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {SCLK_Sys0_SS0_S3}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {SCLK_Sys0_SS0_S3}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {SCLK_Sys0_SS0_S3}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {pwm_Sys0_SS0_S6}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {pwm_Sys0_SS0_S6}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {pwm_Sys0_SS0_S6}];
 
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {pwm_Sys0_SS0_S7}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {pwm_Sys0_SS0_S7}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {pwm_Sys0_SS0_S7}];
 
 # Inputs
 set_input_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {RsRx_Sys0_SS0_S0}];
-set_input_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {RsRx_Sys0_SS0_S0}];
+set_input_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {RsRx_Sys0_SS0_S0}];
 
 set_input_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {RsRx_Sys0_SS0_S1}];
-set_input_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {RsRx_Sys0_SS0_S1}];
+set_input_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {RsRx_Sys0_SS0_S1}];
 
 set_input_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {MSI_Sys0_SS0_S2}];
-set_input_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {MSI_Sys0_SS0_S2}];
+set_input_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {MSI_Sys0_SS0_S2}];
 
 set_input_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {MSI_Sys0_SS0_S3}];
-set_input_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {MSI_Sys0_SS0_S3}];
+set_input_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {MSI_Sys0_SS0_S3}];
 
 # Bidirectional
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {fd_Sys0_S0[*]}];
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {fd_Sys0_S0[*]}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {fd_Sys0_S0[*]}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {fd_Sys0_S0[*]}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {fd_Sys0_S0[*]}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {fd_Sys0_S0[*]}];
 
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {GPIO_Sys0_S2[*]}];
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {GPIO_Sys0_S2[*]}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {GPIO_Sys0_S2[*]}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {GPIO_Sys0_S2[*]}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {GPIO_Sys0_S2[*]}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {GPIO_Sys0_S2[*]}];
 
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {scl_Sys0_SS0_S4[*]}];
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {scl_Sys0_SS0_S4[*]}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {scl_Sys0_SS0_S4[*]}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {scl_Sys0_SS0_S4[*]}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {scl_Sys0_SS0_S4[*]}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {scl_Sys0_SS0_S4[*]}];
 
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {sda_Sys0_SS0_S4[*]}];
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {sda_Sys0_SS0_S4[*]}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {sda_Sys0_SS0_S4[*]}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {sda_Sys0_SS0_S4[*]}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {sda_Sys0_SS0_S4[*]}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {sda_Sys0_SS0_S4[*]}];
 
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {scl_Sys0_SS0_S5[*]}];
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {scl_Sys0_SS0_S5[*]}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {scl_Sys0_SS0_S5[*]}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {scl_Sys0_SS0_S5[*]}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {scl_Sys0_SS0_S5[*]}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {scl_Sys0_SS0_S5[*]}];
 
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {sda_Sys0_SS0_S5[*]}]; 
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {sda_Sys0_SS0_S5[*]}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {sda_Sys0_SS0_S5[*]}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {sda_Sys0_SS0_S5[*]}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {sda_Sys0_SS0_S5[*]}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {sda_Sys0_SS0_S5[*]}];
 
 
 set_input_delay  -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {UART_MASTER_RX}]; 
-set_input_delay  -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {UART_MASTER_RX}];
+set_input_delay  -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {UART_MASTER_RX}];
 set_output_delay -clock [get_clocks HCLK] -min -add_delay 0.0   [get_ports {UART_MASTER_TX}];
-set_output_delay -clock [get_clocks HCLK] -max -add_delay 400.0  [get_ports {UART_MASTER_TX}];
+set_output_delay -clock [get_clocks HCLK] -max -add_delay 8.333  [get_ports {UART_MASTER_TX}];
 
 
 ## 12 MHz Clock Signal
-set_property PACKAGE_PIN L17 [get_ports { HCLK_HF}]; #IO_L12P_T1_MRCC_14 Sch=gclk
-set_property IOSTANDARD LVCMOS33 [get_ports { HCLK_HF}]; #IO_L12P_T1_MRCC_14 Sch=gclk
+set_property PACKAGE_PIN L17 [get_ports { HCLK}]; #IO_L12P_T1_MRCC_14 Sch=gclk
+set_property IOSTANDARD LVCMOS33 [get_ports { HCLK}]; #IO_L12P_T1_MRCC_14 Sch=gclk
 
 ## LEDs
 set_property  PACKAGE_PIN A17 [get_ports { GPIO_Sys0_S2[15] }]; #IO_L12N_T1_MRCC_16 Sch=led[1]
 set_property  IOSTANDARD LVCMOS33  [get_ports { GPIO_Sys0_S2[15] }]; #IO_L12N_T1_MRCC_16 Sch=led[1]
 
-#set_property PACKAGE_PIN C16 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L13P_T2_MRCC_16 Sch=led[2]
-#set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L12N_T1_MRCC_16 Sch=led[1]
+set_property PACKAGE_PIN C16 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L13P_T2_MRCC_16 Sch=led[2]
+set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L12N_T1_MRCC_16 Sch=led[1]
 
 ## RGB LED
 #set_property -dict { PACKAGE_PIN B17   IOSTANDARD LVCMOS33 } [get_ports { led0_b }]; #IO_L14N_T2_SRCC_16 Sch=led0_b
@@ -150,7 +150,7 @@ set_property PACKAGE_PIN R3  [get_ports { GPIO_Sys0_S2[4] }]; #IO_L2P_T0_34 Sch=
 set_property PACKAGE_PIN T3 [get_ports { GPIO_Sys0_S2[3] }]; #IO_L2N_T0_34 Sch=pio[27]
 set_property PACKAGE_PIN R2 [get_ports { GPIO_Sys0_S2[2] }]; #IO_L1P_T0_34 Sch=pio[28]
 set_property PACKAGE_PIN T1 [get_ports { GPIO_Sys0_S2[1] }]; #IO_L3P_T0_DQS_34 Sch=pio[29]
-set_property PACKAGE_PIN T2 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L1N_T0_34 Sch=pio[30]
+# set_property PACKAGE_PIN T2 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L1N_T0_34 Sch=pio[30]
 # set_property PACKAGE_PIN U1 [get_ports { HRESETn }]; #IO_L3N_T0_DQS_34 Sch=pio[31]
 # set_property PACKAGE_PIN W2 [get_ports { NMI }]; #IO_L5N_T0_34 Sch=pio[32]
 
@@ -202,7 +202,7 @@ set_property IOSTANDARD LVCMOS33  [get_ports { GPIO_Sys0_S2[4] }]; #IO_L2P_T0_34
 set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[3] }]; #IO_L2N_T0_34 Sch=pio[27]
 set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[2] }]; #IO_L1P_T0_34 Sch=pio[28]
 set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[1] }]; #IO_L3P_T0_DQS_34 Sch=pio[29]
-set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L1N_T0_34 Sch=pio[30]
+# set_property IOSTANDARD LVCMOS33 [get_ports { GPIO_Sys0_S2[0] }]; #IO_L1N_T0_34 Sch=pio[30]
  set_property IOSTANDARD LVCMOS33 [get_ports { UART_MASTER_RX }]; #IO_L3N_T0_DQS_34 Sch=pio[31]
  set_property IOSTANDARD LVCMOS33 [get_ports { UART_MASTER_TX }]; #IO_L5N_T0_34 Sch=pio[32]
  
